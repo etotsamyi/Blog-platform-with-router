@@ -4,15 +4,17 @@ import * as actions from '../Actions';
 
 const user = handleActions(
   {
-    [actions.login](state, { payload: { user: userData } }) {
-      console.log('работает')
+    [actions.login](_state) {
+      console.log('редьюсер')
+      return 'requested';
+    },
+    [actions.loginSuccess](_state, { 
+      payload: userData
+    }) {
       return userData;
     },
-    [actions.loginSuccess](state, { payload: { user: userData } }) {
-      return userData;
-    },
-    [actions.loginFailure](state, { payload: { errors } }) {
-      return { errors };
+    [actions.loginFailure](_state) {
+      return 'error';
     }
   },
   {}

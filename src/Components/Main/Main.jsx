@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from "react-router-dom";
 import * as actions from '../../Actions';
 import 'antd/dist/antd.css';
 
@@ -16,11 +17,16 @@ const mapDispatchToProps = {
 };
 
 function Main() {
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
   return (
     <div>
       <header>
-        <p>etotsamyi</p>
-        <a href="/login">Выйти</a>
+        <p>{localStorage.getItem("user")}</p>
+        <Link onClick={logout()} to="/">Выйти</Link>
       </header>
       <div>
         <h3>Декларативный</h3>
