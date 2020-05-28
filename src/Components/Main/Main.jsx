@@ -6,27 +6,41 @@ import 'antd/dist/antd.css';
 
 const mapStateToProps = (state) => {
   const props = {
+    userName: state.user.username,
+    // token: state.user.token,
     loggedIn: state.loggedIn,
+    signout: actions.logoutUser,
   };
 
   return props;
 };
 
 const mapDispatchToProps = {
-  signin: actions.login,
+  signout: actions.logoutUser,
 };
 
-function Main() {
+function Main(props) {
+  const token = localStorage.getItem('token');
+
+  if(!token) {
+    return (
+      <Redirect to="/" />
+    )
+  }
+
+  const { signout, userName } = props;
+
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    signout();
   }
 
   return (
     <div>
       <header>
-        <p>{localStorage.getItem("user")}</p>
-        <Link onClick={logout()} to="/">Выйти</Link>
+        <p>{userName}</p>
+        <Link onClick={() => {
+          logout();
+        }} to="/">Выйти</Link>
       </header>
       <div>
         <h3>Декларативный</h3>

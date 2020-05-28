@@ -1,42 +1,41 @@
 import { combineReducers } from "redux";
 import { handleActions } from "redux-actions";
-import * as actions from '../Actions';
+import * as actions from "../Actions";
 
 const user = handleActions(
   {
     [actions.login](_state) {
-      console.log('редьюсер')
-      return 'requested';
+      return "requested";
     },
-    [actions.loginSuccess](_state, { 
-      payload: userData
-    }) {
+    [actions.loginSuccess](_state, { payload: userData }) {
       return userData;
     },
     [actions.loginFailure](_state) {
-      return 'error';
-    }
+      return "error";
+    },
+    [actions.logout](_state) {
+      return {};
+    },
   },
   {}
 );
 
-// const userLoginFetching = handleActions(
-//   {
-//     [actions.login]() {
-//       return 'requested';
-//     },
-//     [actions.loginSuccess]() {
-//       return 'finished';
-//     },
-//     [actions.loginFailure]() {
-//       return 'failed';
-//     },
-//   },
-//   'none'
-// );
+const registerStatus = handleActions(
+  {
+    [actions.register](_state) {
+      return "requested";
+    },
+    [actions.registerSuccess](_state) {
+      return "register-success";
+    },
+    [actions.registerFailure](_state) {
+      return "register-error";
+    },
+  },
+  {}
+);
 
 export default combineReducers({
-  // loggedIn,
   user,
-  // userLoginFetching,
+  registerStatus,
 });

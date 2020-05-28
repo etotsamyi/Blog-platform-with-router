@@ -4,30 +4,79 @@ import { createAction } from "redux-actions";
 export const login = createAction("LOGIN_REQUEST");
 export const loginSuccess = createAction("LOGIN_SUCCESS");
 export const loginFailure = createAction("LOGIN_FAILURE");
+export const logout = createAction("LOGOUT");
+
+export const register = createAction("REGISTER_REQUEST");
+export const registerSuccess = createAction("REGISTER_SUCCESS");
+export const registerFailure = createAction("REGISTER_FAILURE");
+
+export const loginWithJWT = () => async (dispatch) => {
+  dispatch(login());
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get(
+      "https://conduit.productionready.io/api/user",
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      const { username, token } = response.data.user;
+      dispatch(
+        loginSuccess({
+          username: username,
+          token: token,
+        })
+      );
+    }
+  } catch (error) {
+    dispatch(loginFailure());
+    throw error;
+  }
+};
 
 export const loginUser = (values) => async (dispatch) => {
-  console.log("экшен");
-  dispatch(login(values));
+  dispatch(login());
   try {
     const response = await axios.post(
       "https://conduit.productionready.io/api/users/login",
       { user: values }
     );
+    const { token, username } = response.data.user;
     if (response.status === 200) {
-      const token = response.data.user.token;
-      const userName = response.data.user.username;
-      console.log('response', response);
-      dispatch(loginSuccess({
-        userName: userName,
-        token: token,
-      }));
-      localStorage.setItem("user", userName);
       localStorage.setItem("token", token);
-      console.log(localStorage.getItem("token"), localStorage.getItem("user"), 'localstorage');
+      dispatch(
+        loginSuccess({
+          username: username,
+          token: token,
+        })
+      );
     }
   } catch (error) {
-    console.log(error);
     dispatch(loginFailure());
+    throw error;
+  }
+};
+
+export const logoutUser = () => async (dispatch) => {
+  localStorage.removeItem("token");
+  dispatch(logout());
+};
+
+export const registerUser = (values) => async (dispatch) => {
+  dispatch(register());
+  try {
+    const response = await axios.post(
+      "https://conduit.productionready.io/api/users",
+      { user: values }
+    );
+    if (response.status === 200) {
+      dispatch(registerSuccess());
+    }
+  } catch (error) {
+    dispatch(registerFailure());
     throw error;
   }
 };

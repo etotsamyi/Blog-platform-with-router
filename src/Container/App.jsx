@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-  withRouter,
 } from "react-router-dom";
+import * as actions from "../Actions";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Main from "../Components/Main";
@@ -15,28 +15,39 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   const props = {
-    userName: state.user.userName,
+    username: state.user.username,
     token: state.user.token,
+    loginWithJWT: actions.loginWithJWT,
   };
 
   return props;
 };
 
-const localTokenChecking = () => {
-  const localStoreToken = localStorage.getItem("token");
-  return localStoreToken ? "/main" : "/login";
+const mapDispatchToProps = {
+  loginWithJWT: actions.loginWithJWT,
 };
 
 function App(props) {
-  const { userName, token } = props;
-  console.log(userName, token, "ПРОПСЫ в APP");
+  const { loginWithJWT, token } = props;
+
+  const localTokenChecking = () => {
+    const localStoreToken = localStorage.getItem("token");
+    if (!localStoreToken && !token) {
+      return <Redirect to="/login" />;
+    }
+    if (localStoreToken && !token) {
+      loginWithJWT(localStoreToken);
+      return <Redirect to="/main" />;
+    }
+    return <Redirect to="/main" />;
+  };
 
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Redirect to={localTokenChecking()} />
+            {localTokenChecking()}
           </Route>
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Register} />
@@ -47,4 +58,4 @@ function App(props) {
   );
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
