@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { Formik, Form } from "formik";
 import { Link, Redirect } from "react-router-dom";
 import * as actions from "../../Actions";
-import { Input } from "antd";
+import { Input, Button, Divider } from "antd";
 import "antd/dist/antd.css";
+import "./login.css";
 
 const mapStateToProps = (state) => {
   const props = {
@@ -15,12 +16,6 @@ const mapStateToProps = (state) => {
 
   return props;
 };
-
-// const tokenChecking = () => {
-//   const localtoken = localStorage.getItem("token");
-//   console.log(localtoken);
-//   return localtoken ? "/main" : "/login";
-// };
 
 const mapDispatchToProps = {
   signin: actions.loginUser,
@@ -38,7 +33,7 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className="login-form">
       <Formik
         initialValues={{
           email: "",
@@ -58,7 +53,7 @@ function Login(props) {
           isSubmitting,
         }) => (
           <div className={isSubmitting ? "submitting-form" : ""}>
-            <Form className="login-form">
+            <Form>
               <label>
                 Email:
                 <Input
@@ -79,9 +74,18 @@ function Login(props) {
                   value={values.password}
                 />
               </label>
-              <button type="submit">Войти</button>
+              <Button
+                className="submit-button"
+                type="primary"
+                htmlType="submit"
+              >
+                Войти
+              </Button>
             </Form>
-            <Link to="/signup">Регистрация</Link>
+            <Divider />
+            <Link className="login-form__register" to="/signup">
+              Регистрация
+            </Link>
           </div>
         )}
       </Formik>

@@ -1,0 +1,32 @@
+.main {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.main__header {
+  background-color: rgb(54, 54, 54);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: aliceblue;
+}
+
+.main__wall {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__wall__post {
+  align-items: center;
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px;
+  background-color: rgb(247, 247, 248);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}

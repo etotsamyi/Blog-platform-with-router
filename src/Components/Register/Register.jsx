@@ -1,10 +1,11 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { Input } from "antd";
+import { Input, Button, Divider } from "antd";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../Actions";
 import "antd/dist/antd.css";
+import "./register.css";
 
 const mapStateToProps = (state) => {
   const props = {
@@ -36,7 +37,7 @@ function Register(props) {
   };
 
   return (
-    <div>
+    <div className="register-form">
       <Formik
         initialValues={{
           username: "",
@@ -45,7 +46,6 @@ function Register(props) {
         }}
         // validationSchema={SignupSchema}
         onSubmit={(values) => {
-          console.log(values);
           register(values);
         }}
       >
@@ -89,9 +89,10 @@ function Register(props) {
                   value={values.password}
                 />
               </label>
-              <button type="submit">Регистрация</button>
+              <Button className="submit-button" type="primary" htmlType="submit">Регистрация</Button>
             </Form>
-            <Link to="/login">Войти</Link>
+            <Divider />
+            <Link className="register-form__signin" as={Button} to="/login">Войти</Link>
           </div>
         )}
       </Formik>

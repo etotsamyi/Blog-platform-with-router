@@ -1,0 +1,20 @@
+.login-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 250px;
+  /* width: 50vw; */
+  margin: 5%;
+  padding: 10px;
+  border: 1px;
+  background-color: rgb(247, 247, 248);
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.submit-button {
+  margin-top: 10px;
+}
+
+.login-form__register {
+  vertical-align: top;
+}
