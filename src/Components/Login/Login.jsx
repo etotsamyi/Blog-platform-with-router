@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { Link, Redirect } from "react-router-dom";
 import * as actions from "../../Actions";
 import { Input, Button, Divider } from "antd";
+import * as routes from "../../routes.js"
 import "antd/dist/antd.css";
 import "./login.css";
 
@@ -25,7 +26,7 @@ function Login(props) {
   const { token, signin } = props;
 
   if (token) {
-    return <Redirect to="/main" />;
+    return <Redirect to={routes.main} />;
   }
 
   const login = (values) => {
@@ -83,7 +84,7 @@ function Login(props) {
               </Button>
             </Form>
             <Divider />
-            <Link className="login-form__register" to="/signup">
+            <Link className="login-form__register" to={routes.register}>
               Регистрация
             </Link>
           </div>

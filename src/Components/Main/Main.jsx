@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button, Divider } from "antd";
-import { UserOutlined } from "@ant-design/icons"
+import { UserOutlined } from "@ant-design/icons";
 import { Link, Redirect } from "react-router-dom";
 import * as actions from "../../Actions";
+import * as routes from "../../routes.js";
 import "antd/dist/antd.css";
 import "./main.css";
 
@@ -25,7 +26,7 @@ function Main(props) {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    return <Redirect to="/" />;
+    return <Redirect to={routes.home} />;
   }
 
   const { signout, userName } = props;
@@ -45,7 +46,7 @@ function Main(props) {
           onClick={() => {
             logout();
           }}
-          to="/"
+          to={routes.home}
         >
           Выйти
         </Link>

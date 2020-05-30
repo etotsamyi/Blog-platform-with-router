@@ -11,6 +11,7 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Main from "../Components/Main";
 import { connect } from "react-redux";
+import * as routes from "../routes.js"
 // import PropTypes from 'prop-types';
 
 const mapStateToProps = (state) => {
@@ -33,25 +34,25 @@ function App(props) {
   const localTokenChecking = () => {
     const localStoreToken = localStorage.getItem("token");
     if (!localStoreToken && !token) {
-      return <Redirect to="/login" />;
+      return <Redirect to={routes.login} />;
     }
     if (localStoreToken && !token) {
       loginWithJWT(localStoreToken);
-      return <Redirect to="/main" />;
+      return <Redirect to={routes.main} />;
     }
-    return <Redirect to="/main" />;
+    return <Redirect to={routes.main} />;
   };
 
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/">
+          <Route exact path={routes.home}>
             {localTokenChecking()}
           </Route>
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Register} />
-          <Route path="/main" exact component={Main} />
+          <Route path={routes.login} exact component={Login} />
+          <Route path={routes.register} exact component={Register} />
+          <Route path={routes.main} exact component={Main} />
         </Switch>
       </div>
     </Router>

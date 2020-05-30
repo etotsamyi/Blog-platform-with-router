@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import * as actions from "../../Actions";
 import "antd/dist/antd.css";
 import "./register.css";
+import * as routes from "../../routes.js";
 
 const mapStateToProps = (state) => {
   const props = {
@@ -25,11 +26,11 @@ function Register(props) {
   const { registerUser, token } = props;
 
   if (token) {
-    return <Redirect to="/main" />;
+    return <Redirect to={routes.main} />;
   }
 
   if (props.registerStatus === "register-success") {
-    return <Redirect to="/login" />;
+    return <Redirect to={routes.login} />;
   }
 
   const register = (values) => {
@@ -89,10 +90,18 @@ function Register(props) {
                   value={values.password}
                 />
               </label>
-              <Button className="submit-button" type="primary" htmlType="submit">Регистрация</Button>
+              <Button
+                className="submit-button"
+                type="primary"
+                htmlType="submit"
+              >
+                Регистрация
+              </Button>
             </Form>
             <Divider />
-            <Link className="register-form__signin" as={Button} to="/login">Войти</Link>
+            <Link className="register-form__signin" as={Button} to={routes.login}>
+              Войти
+            </Link>
           </div>
         )}
       </Formik>
