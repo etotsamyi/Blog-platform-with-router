@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Divider } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { Link, Redirect } from "react-router-dom";
+import { Button, BackTop } from "antd";
+import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Redirect } from "react-router-dom";
 import * as actions from "../../Actions";
 import * as routes from "../../routes.js";
 import "antd/dist/antd.css";
@@ -31,10 +31,6 @@ function Main(props) {
 
   const { signout, userName } = props;
 
-  const logout = () => {
-    signout();
-  };
-
   return (
     <div className="main">
       <header className="main__header">
@@ -42,16 +38,31 @@ function Main(props) {
           Пользователь: <UserOutlined />
           {userName}
         </div>
-        <Link
-          onClick={() => {
-            logout();
-          }}
+        <Button
+          className="main__header__logout"
+          onClick={signout}
           to={routes.home}
         >
-          Выйти
-        </Link>
+          <LogoutOutlined /> Выйти
+        </Button>
       </header>
       <div className="main__wall">
+        <div className="main__wall__post">
+          <h3>Сделать пагинацию</h3>
+          <p>Посты</p>
+        </div>
+        <div className="main__wall__post">
+          <h3>получить посты с АПИ</h3>
+          <p>Посты</p>
+        </div>
+        <div className="main__wall__post">
+          <h3>Приватные роуты</h3>
+          <p>Сделать приватные роуты</p>
+        </div>
+        <div className="main__wall__post">
+          <h3>ПОФИКСИТЬ ОТНОСИТЕЛЬНЫЕ РАЗМЕРЫ!!!!</h3>
+          <p>ПОФИКСИТЬ ОТНОСИТЕЛЬНЫЕ РАЗМЕРЫ!!!!</p>
+        </div>
         <div className="main__wall__post">
           <h3>Декларативный</h3>
           <p>
@@ -83,6 +94,7 @@ function Main(props) {
           </p>
         </div>
       </div>
+      <BackTop />
     </div>
   );
 }

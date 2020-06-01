@@ -11,7 +11,7 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Main from "../Components/Main";
 import { connect } from "react-redux";
-import * as routes from "../routes.js"
+import * as routes from "../routes.js";
 // import PropTypes from 'prop-types';
 
 const mapStateToProps = (state) => {
@@ -29,7 +29,7 @@ const mapDispatchToProps = {
 };
 
 function App(props) {
-  const { loginWithJWT, token } = props;
+  const { loginWithJWT, token, username } = props;
 
   const localTokenChecking = () => {
     const localStoreToken = localStorage.getItem("token");

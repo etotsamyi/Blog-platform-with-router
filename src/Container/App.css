@@ -1,10 +1,18 @@
+body {
+  background: url(./background-img.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .App {
   display: flex;
   /* justify-content: space-between; */
-  align-items: center;
+  align-items: top;
   justify-content: center;
-  background-color: rgb(247, 249, 252);
+  /* background-color: rgb(247, 249, 252); */
   min-height: 100vh;
+  padding-bottom: 30px;
   /* min-width: 100vh; */
   /* min-height: 80vh;
   margin: 5%;

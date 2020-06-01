@@ -59,7 +59,7 @@ function Register(props) {
           isSubmitting,
         }) => (
           <div className={isSubmitting ? "submitting-form" : ""}>
-            <Form className="registration">
+            <Form className="register-form___registration">
               <label>
                 Имя пользователя:
                 <Input
