@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4ada07b0675ca4bba4132289f9bcfe04",
+    "revision": "297bbff562245852bfde8f5fbf2a0981",
     "url": "/Blog-platform-with-router/index.html"
   },
   {
-    "revision": "a7cd00fbbc20d40542af",
+    "revision": "9c48fe4047c01e242a7a",
     "url": "/Blog-platform-with-router/static/css/2.d7262850.chunk.css"
   },
   {
-    "revision": "157fadb97b8a7597ace7",
-    "url": "/Blog-platform-with-router/static/css/main.c6f8ae16.chunk.css"
+    "revision": "99ddcfde11e4034fde73",
+    "url": "/Blog-platform-with-router/static/css/main.5eeeaa19.chunk.css"
   },
   {
-    "revision": "a7cd00fbbc20d40542af",
-    "url": "/Blog-platform-with-router/static/js/2.d353feea.chunk.js"
+    "revision": "9c48fe4047c01e242a7a",
+    "url": "/Blog-platform-with-router/static/js/2.a232969e.chunk.js"
   },
   {
     "revision": "cacaf3f01dd3bd8237006f7c58951c1c",
-    "url": "/Blog-platform-with-router/static/js/2.d353feea.chunk.js.LICENSE.txt"
+    "url": "/Blog-platform-with-router/static/js/2.a232969e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "157fadb97b8a7597ace7",
-    "url": "/Blog-platform-with-router/static/js/main.782e366c.chunk.js"
+    "revision": "99ddcfde11e4034fde73",
+    "url": "/Blog-platform-with-router/static/js/main.dccec6ef.chunk.js"
   },
   {
     "revision": "ebe7e51b2b2228912ae0",
