@@ -23,33 +23,12 @@ const mapDispatchToProps = {
   signin: actions.loginUser,
 };
 
-function isError(status, name) {
-  if (status === "error") {
-    return message.error("Пара логин и пароль не найдена");
-  }
-
-  if (
-    status !== "requested" &&
-    status !== "error" &&
-    Object.keys(status).length !== 0
-  ) {
-    return message.success(`Добро пожаловать ${name}`);
-  }
-  // return status === "error" ? message.error("Пара логин и пароль не найдена") : null;
-}
-
 function Login(props) {
   const { token, signin, userStatus, username } = props;
 
   if (token) {
     return <Redirect to={routes.main} />;
   }
-
-  isError(userStatus, username);
-
-  const login = (values) => {
-    signin(values);
-  };
 
   return (
     <div className="login-form">
@@ -59,9 +38,7 @@ function Login(props) {
           password: "",
         }}
         // validationSchema={SignupSchema}
-        onSubmit={(values) => {
-          login(values);
-        }}
+        onSubmit={(values) => signin(values)}
       >
         {({
           values,
@@ -82,7 +59,6 @@ function Login(props) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
-                  htmlType="email"
                 />
               </label>
               <label>
@@ -94,7 +70,6 @@ function Login(props) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
-                  htmlType="password"
                 />
               </label>
               <Button

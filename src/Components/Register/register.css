@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 300px;
+  height: 310px;
+  max-height: 340px;
   margin: 5%;
-  padding: 10px;
+  padding: 15px;
   border: 1px;
   background-color: rgb(221, 221, 221);
   box-shadow: 1px 1px 5px rgba(212, 212, 212, 0.5);
@@ -23,4 +24,8 @@
 
 .register-form__signin {
   vertical-align: top;
+}
+
+.input-error {
+  color: rgb(194, 38, 38)
 }

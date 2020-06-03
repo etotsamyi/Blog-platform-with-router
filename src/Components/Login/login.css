@@ -3,6 +3,7 @@
   justify-content: space-around;
   align-items: center;
   height: 250px;
+  max-height: 270px;
   /* width: 50vw; */
   margin: 5%;
   padding: 10px;
