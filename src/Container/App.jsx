@@ -7,13 +7,12 @@ import {
   Redirect,
 } from "react-router-dom";
 import * as actions from "../Actions";
+import { connect } from "react-redux";
+import * as routes from "../routes.js";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Main from "../Components/Main";
-import { connect } from "react-redux";
-import * as routes from "../routes.js";
-import { message } from "antd";
-// import PropTypes from 'prop-types';
+import AddArticle from "../Components/AddArticle";
 
 const mapStateToProps = (state) => {
   const props = {
@@ -21,7 +20,7 @@ const mapStateToProps = (state) => {
     token: state.user.token,
     loginWithJWT: actions.loginWithJWT,
     userStatus: state.user,
-    registerStatus: state.registerStatus
+    registerStatus: state.registerStatus,
   };
 
   return props;
@@ -31,22 +30,11 @@ const mapDispatchToProps = {
   loginWithJWT: actions.loginWithJWT,
 };
 
-function isError(status, register) {
-  if (status === "error") {
-    return message.error("Пара логин и пароль не найдена");
-  }
-  if (register === "register-error") {
-    return message.error("Email или имя пользователя уже зарегистрированы!");
-  }
-}
-
 function App(props) {
-  const { loginWithJWT, token, username, userStatus, registerStatus } = props;
+  const { loginWithJWT, token } = props;
+  const localStoreToken = localStorage.getItem("token");
 
-  isError(userStatus, registerStatus);
-
-  const localTokenChecking = () => {
-    const localStoreToken = localStorage.getItem("token");
+  const startTokenChecking = () => {
     if (!localStoreToken && !token) {
       return <Redirect to={routes.login} />;
     }
@@ -62,11 +50,21 @@ function App(props) {
       <div className="App">
         <Switch>
           <Route exact path={routes.home}>
-            {localTokenChecking()}
+            {startTokenChecking()}
           </Route>
-          <Route path={routes.login} exact component={Login} />
-          <Route path={routes.register} exact component={Register} />
-          <Route path={routes.main} exact component={Main} />
+          <Route path={routes.login} exact component={Login}>
+            {localStoreToken ? <Redirect to={routes.main} /> : null}
+          </Route>
+          <Route path={routes.register} exact component={Register}>
+            {localStoreToken ? <Redirect to={routes.main} /> : null}
+          </Route>
+          <Route path={routes.main} exact component={Main}>
+            {!localStoreToken ? <Redirect to={routes.login} /> : null}
+          </Route>
+          <Route path={routes.add_article} exact component={AddArticle}>
+            {!localStoreToken ? <Redirect to={routes.login} /> : null}
+          </Route>
+          <Route path="*" component={() => "404 ТАКОЙ СТРАНИЦЫ НЕ СУЩЕСТВУЕТ!"} />
         </Switch>
       </div>
     </Router>

@@ -1,46 +1,30 @@
 .main {
+  min-width: 70vw;
   width: 70vw;
   display: flex;
   flex-direction: column;
-  /* margin-top: 30px; */
   align-items: center;
   font-size: 18px;
 }
 
-.main__header {
-  /* background-color: rgb(54, 54, 54); */
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  background: linear-gradient(
-    90deg,
-    rgba(54, 54, 54, 1) 0%,
-    rgb(122, 122, 122) 50%,
-    rgb(226, 226, 226) 100%
-  );
-  position: fixed;
-  width: 100vw;
-  height: 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: aliceblue;
-  font-size: 2vh;
-}
-
-.main__header__logout {
-  background-color: rgba(54, 54, 54, 1);
-  margin: 0px;
-  color: rgb(226, 226, 226);
-  width: 10%;
-  height: 70%;
-  font-size: 2vh;
-}
-
 .main__wall {
-  margin-top: 5%;
+  margin-top: 90px;
   display: flex;
   flex-direction: column;
+}
+
+.main__wall__create {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 45%;
+  padding-right: 45%;
+  min-height: 50px;
+  font-size: 18px;
+  background-color: rgba(54, 54, 54, 1);
+  color: rgb(226, 226, 226);
+  border: 0.5px solid rgb(155, 155, 155);
+  border-radius: 5px;
 }
 
 .main__wall__post {

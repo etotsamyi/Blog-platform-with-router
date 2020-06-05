@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAction } from "redux-actions";
+import { message } from "antd";
 
 export const login = createAction("LOGIN_REQUEST");
 export const loginSuccess = createAction("LOGIN_SUCCESS");
@@ -46,6 +47,7 @@ export const loginUser = (values) => async (dispatch) => {
     );
     const { token, username } = response.data.user;
     if (response.status === 200) {
+      message.success(`Добро пожаловать ${username}`);
       localStorage.setItem("token", token);
       dispatch(
         loginSuccess({
@@ -55,6 +57,7 @@ export const loginUser = (values) => async (dispatch) => {
       );
     }
   } catch (error) {
+    message.error("Пара логин и пароль не найдена");
     dispatch(loginFailure());
     throw error;
   }
@@ -73,9 +76,11 @@ export const registerUser = (values) => async (dispatch) => {
       { user: values }
     );
     if (response.status === 200) {
+      message.success("Вы успешно зрегистрированы!");
       dispatch(registerSuccess());
     }
   } catch (error) {
+    message.error("Email или имя пользователя уже зарегистрированы!");
     dispatch(registerFailure());
     throw error;
   }

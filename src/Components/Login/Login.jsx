@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Formik, Form } from "formik";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as actions from "../../Actions";
-import { Input, Button, Divider, message } from "antd";
+import { Input, Button, Divider } from "antd";
 import * as routes from "../../routes.js";
 import "antd/dist/antd.css";
 import "./login.css";
@@ -24,11 +24,7 @@ const mapDispatchToProps = {
 };
 
 function Login(props) {
-  const { token, signin, userStatus, username } = props;
-
-  if (token) {
-    return <Redirect to={routes.main} />;
-  }
+  const { signin } = props;
 
   return (
     <div className="login-form">

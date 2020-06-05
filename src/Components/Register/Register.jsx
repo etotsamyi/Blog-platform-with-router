@@ -34,11 +34,7 @@ const mapDispatchToProps = {
 };
 
 function Register(props) {
-  const { registerUser, token } = props;
-
-  if (token) {
-    return <Redirect to={routes.main} />;
-  }
+  const { registerUser } = props;
 
   if (props.registerStatus === "register-success") {
     return <Redirect to={routes.login} />;
