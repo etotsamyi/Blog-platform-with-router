@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Blog-platform-with-router/static/css/main.5eeeaa19.chunk.css",
-    "main.js": "/Blog-platform-with-router/static/js/main.dccec6ef.chunk.js",
-    "main.js.map": "/Blog-platform-with-router/static/js/main.dccec6ef.chunk.js.map",
+    "main.css": "/Blog-platform-with-router/static/css/main.23b4d98d.chunk.css",
+    "main.js": "/Blog-platform-with-router/static/js/main.423b3c24.chunk.js",
+    "main.js.map": "/Blog-platform-with-router/static/js/main.423b3c24.chunk.js.map",
     "runtime-main.js": "/Blog-platform-with-router/static/js/runtime-main.8d6ebf1f.js",
     "runtime-main.js.map": "/Blog-platform-with-router/static/js/runtime-main.8d6ebf1f.js.map",
     "static/css/2.d7262850.chunk.css": "/Blog-platform-with-router/static/css/2.d7262850.chunk.css",
-    "static/js/2.a232969e.chunk.js": "/Blog-platform-with-router/static/js/2.a232969e.chunk.js",
-    "static/js/2.a232969e.chunk.js.map": "/Blog-platform-with-router/static/js/2.a232969e.chunk.js.map",
+    "static/js/2.6926f573.chunk.js": "/Blog-platform-with-router/static/js/2.6926f573.chunk.js",
+    "static/js/2.6926f573.chunk.js.map": "/Blog-platform-with-router/static/js/2.6926f573.chunk.js.map",
     "index.html": "/Blog-platform-with-router/index.html",
-    "precache-manifest.d239b467c1e13836fb62e5108016ea66.js": "/Blog-platform-with-router/precache-manifest.d239b467c1e13836fb62e5108016ea66.js",
+    "precache-manifest.88a4ad7f0f770c79e2af017fd1ea23c3.js": "/Blog-platform-with-router/precache-manifest.88a4ad7f0f770c79e2af017fd1ea23c3.js",
     "service-worker.js": "/Blog-platform-with-router/service-worker.js",
     "static/css/2.d7262850.chunk.css.map": "/Blog-platform-with-router/static/css/2.d7262850.chunk.css.map",
-    "static/css/main.5eeeaa19.chunk.css.map": "/Blog-platform-with-router/static/css/main.5eeeaa19.chunk.css.map",
-    "static/js/2.a232969e.chunk.js.LICENSE.txt": "/Blog-platform-with-router/static/js/2.a232969e.chunk.js.LICENSE.txt",
+    "static/css/main.23b4d98d.chunk.css.map": "/Blog-platform-with-router/static/css/main.23b4d98d.chunk.css.map",
+    "static/js/2.6926f573.chunk.js.LICENSE.txt": "/Blog-platform-with-router/static/js/2.6926f573.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Blog-platform-with-router/static/media/background-img.319e5960.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8d6ebf1f.js",
     "static/css/2.d7262850.chunk.css",
-    "static/js/2.a232969e.chunk.js",
-    "static/css/main.5eeeaa19.chunk.css",
-    "static/js/main.dccec6ef.chunk.js"
+    "static/js/2.6926f573.chunk.js",
+    "static/css/main.23b4d98d.chunk.css",
+    "static/js/main.423b3c24.chunk.js"
   ]
 }
