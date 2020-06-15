@@ -35,7 +35,39 @@ const registerStatus = handleActions(
   {}
 );
 
+const createArticle = handleActions(
+  {
+    [actions.createArticleRequest](_state) {
+      return "create-requested";
+    },
+    [actions.createArticleSuccess](_state, { payload: article }) {
+      return "create-succes";
+    },
+    [actions.createArticleFailure](_state) {
+      return "create-error";
+    },
+  },
+  {}
+);
+
+const articleList = handleActions(
+  {
+    [actions.getArticlesRequest](_state) {
+      return "getting-requested";
+    },
+    [actions.getArticlesSuccess](_state, { payload: articles }) {
+      return [...articles];
+    },
+    [actions.getArticlesFailure](_state) {
+      return "getting-error";
+    },
+  },
+  []
+);
+
 export default combineReducers({
   user,
   registerStatus,
+  createArticle,
+  articleList,
 });

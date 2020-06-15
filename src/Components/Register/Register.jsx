@@ -40,10 +40,6 @@ function Register(props) {
     return <Redirect to={routes.login} />;
   }
 
-  const register = (values) => {
-    registerUser(values);
-  };
-
   return (
     <div className="register-form">
       <Formik
@@ -54,7 +50,7 @@ function Register(props) {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          register(values);
+          registerUser(values);
         }}
       >
         {({

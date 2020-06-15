@@ -1,0 +1,10 @@
+.article-form {
+  background-color: rgb(247, 247, 248);
+  min-width: 700px;
+  padding: 20px;
+  margin-top: 10%;
+}
+
+.submit-button {
+  margin-top: 25px;
+}

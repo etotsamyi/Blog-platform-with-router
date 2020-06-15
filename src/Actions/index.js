@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAction } from "redux-actions";
 import { message } from "antd";
+import instance from "./api";
 
 export const login = createAction("LOGIN_REQUEST");
 export const loginSuccess = createAction("LOGIN_SUCCESS");
@@ -10,6 +11,14 @@ export const logout = createAction("LOGOUT");
 export const register = createAction("REGISTER_REQUEST");
 export const registerSuccess = createAction("REGISTER_SUCCESS");
 export const registerFailure = createAction("REGISTER_FAILURE");
+
+export const createArticleRequest = createAction("CREATE_REQUEST");
+export const createArticleSuccess = createAction("CREATE_SUCCESS");
+export const createArticleFailure = createAction("CREATE_FAILURE");
+
+export const getArticlesRequest = createAction("GET_ARTICLES_REQUEST");
+export const getArticlesSuccess = createAction("GET_ARTICLES_SUCCESS");
+export const getArticlesFailure = createAction("GET_ARTICLES_FAILURE");
 
 export const loginWithJWT = () => async (dispatch) => {
   dispatch(login());
@@ -83,5 +92,43 @@ export const registerUser = (values) => async (dispatch) => {
     message.error("Email или имя пользователя уже зарегистрированы!");
     dispatch(registerFailure());
     throw error;
+  }
+};
+
+export const createArticle = (values) => async (dispatch) => {
+  dispatch(createArticleRequest());
+  console.log(values);
+  // const valuesWithTags = {
+  //   title: values.title,
+  //   description: values.description,
+  //   body: values.body,
+  //   tagList: values.tagList ? values.tagList.split(" ") : "",
+  // };
+  // console.log(valuesWithTags);
+  try {
+    const response = await instance.post("/articles", values);
+    console.log(response);
+    if (response.status === 200) {
+      message.success(`Успешно!`);
+      dispatch(createArticleSuccess(response.data.article));
+      getArticleList();
+      setTimeout(() => window.history.back(), 1500);
+    }
+  } catch (error) {
+    dispatch(createArticleFailure());
+    console.log(error);
+  }
+};
+
+export const getArticleList = () => async (dispatch) => {
+  dispatch(getArticlesRequest());
+  try {
+    const response = await instance.get("/articles?limit=10");
+    console.log(response.data.articles);
+    if (response.status === 200) {
+      dispatch(getArticlesSuccess(response.data.articles));
+    }
+  } catch (error) {
+    dispatch(createArticleFailure());
   }
 };

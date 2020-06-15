@@ -11,6 +11,7 @@
   margin-top: 90px;
   display: flex;
   flex-direction: column;
+  width: 75%;
 }
 
 .main__wall__create {
@@ -28,11 +29,45 @@
 }
 
 .main__wall__post {
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 30px;
-  padding: 10px;
+  padding: 20px;
   border: 1px;
   background-color: rgb(247, 247, 248);
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
+
+.main__wall__post__footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.skeleton-loader {
+  margin-top: 30px;
+  background-color: rgb(247, 247, 248);
+  padding: 20px;
+  border: 1px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.main__wall__post__heading {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.main__wall__post__author {
+  color: rgb(97, 97, 97);
+  font-size: 15px;
+  font-weight: normal;
+}
+
+/* .main__wall__post__footer__tag {
+
+} */
