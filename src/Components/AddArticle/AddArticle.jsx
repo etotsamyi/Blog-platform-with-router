@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
     loggedIn: state.loggedIn,
     signout: actions.logoutUser,
     createArticle: actions.createArticle,
+    getArticleList: actions.getArticleList,
   };
 
   return props;
@@ -24,10 +25,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   createArticle: actions.createArticle,
+  getArticleList: actions.getArticleList,
 };
 
 function AddArticle(props) {
-  const { createArticle, history } = props;
+  const { createArticle, history, getArticleList } = props;
 
   return (
     <div className="main">
@@ -54,6 +56,7 @@ function AddArticle(props) {
               tagList: values.tagList ? values.tagList.split(" ") : [],
             };
             await createArticle(valuesWithTags);
+            getArticleList(1);
             history.push(routes.main);
           }}
         >
