@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/Blog-platform-with-router/static/css/main.101484c9.chunk.css",
-    "main.js": "/Blog-platform-with-router/static/js/main.9cd15638.chunk.js",
-    "main.js.map": "/Blog-platform-with-router/static/js/main.9cd15638.chunk.js.map",
+    "main.js": "/Blog-platform-with-router/static/js/main.8988d57c.chunk.js",
+    "main.js.map": "/Blog-platform-with-router/static/js/main.8988d57c.chunk.js.map",
     "runtime-main.js": "/Blog-platform-with-router/static/js/runtime-main.8d6ebf1f.js",
     "runtime-main.js.map": "/Blog-platform-with-router/static/js/runtime-main.8d6ebf1f.js.map",
     "static/css/2.d7262850.chunk.css": "/Blog-platform-with-router/static/css/2.d7262850.chunk.css",
-    "static/js/2.f8534564.chunk.js": "/Blog-platform-with-router/static/js/2.f8534564.chunk.js",
-    "static/js/2.f8534564.chunk.js.map": "/Blog-platform-with-router/static/js/2.f8534564.chunk.js.map",
+    "static/js/2.ab77199d.chunk.js": "/Blog-platform-with-router/static/js/2.ab77199d.chunk.js",
+    "static/js/2.ab77199d.chunk.js.map": "/Blog-platform-with-router/static/js/2.ab77199d.chunk.js.map",
     "index.html": "/Blog-platform-with-router/index.html",
-    "precache-manifest.eeeb9d5899f96f43d071e1e75744bf4c.js": "/Blog-platform-with-router/precache-manifest.eeeb9d5899f96f43d071e1e75744bf4c.js",
+    "precache-manifest.4973eda383902c5ba2e2e49cb07b493b.js": "/Blog-platform-with-router/precache-manifest.4973eda383902c5ba2e2e49cb07b493b.js",
     "service-worker.js": "/Blog-platform-with-router/service-worker.js",
     "static/css/2.d7262850.chunk.css.map": "/Blog-platform-with-router/static/css/2.d7262850.chunk.css.map",
     "static/css/main.101484c9.chunk.css.map": "/Blog-platform-with-router/static/css/main.101484c9.chunk.css.map",
-    "static/js/2.f8534564.chunk.js.LICENSE.txt": "/Blog-platform-with-router/static/js/2.f8534564.chunk.js.LICENSE.txt",
+    "static/js/2.ab77199d.chunk.js.LICENSE.txt": "/Blog-platform-with-router/static/js/2.ab77199d.chunk.js.LICENSE.txt",
     "static/media/App.css": "/Blog-platform-with-router/static/media/background-img.319e5960.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8d6ebf1f.js",
     "static/css/2.d7262850.chunk.css",
-    "static/js/2.f8534564.chunk.js",
+    "static/js/2.ab77199d.chunk.js",
     "static/css/main.101484c9.chunk.css",
-    "static/js/main.9cd15638.chunk.js"
+    "static/js/main.8988d57c.chunk.js"
   ]
 }
