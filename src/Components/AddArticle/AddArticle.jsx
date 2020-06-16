@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Formik, Form } from "formik";
 import { Input, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { LeftCircleOutlined } from "@ant-design/icons";
 import * as routes from "../../routes.js";
 import * as actions from "../../Actions";
@@ -27,7 +27,7 @@ const mapDispatchToProps = {
 };
 
 function AddArticle(props) {
-  const { createArticle } = props;
+  const { createArticle, history } = props;
 
   return (
     <div className="main">
@@ -46,14 +46,15 @@ function AddArticle(props) {
             body: "",
             tagList: "",
           }}
-          onSubmit={(values) => {
+          onSubmit={async (values) => {
             const valuesWithTags = {
               title: values.title,
               description: values.description,
               body: values.body,
               tagList: values.tagList ? values.tagList.split(" ") : [],
             };
-            createArticle(valuesWithTags);
+            await createArticle(valuesWithTags);
+            history.push(routes.main);
           }}
         >
           {({
@@ -125,4 +126,7 @@ function AddArticle(props) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddArticle);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(AddArticle));

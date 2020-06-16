@@ -1,7 +1,11 @@
 import React from "react";
-import { BackTop, Skeleton, Divider, Tag } from "antd";
+import { BackTop, Skeleton, Divider, Tag, Pagination } from "antd";
 import { connect } from "react-redux";
-import { PlusCircleOutlined, HeartTwoTone, UserOutlined } from "@ant-design/icons";
+import {
+  PlusCircleOutlined,
+  HeartTwoTone,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import * as routes from "../../routes.js";
 import Header from "../Header";
@@ -13,6 +17,9 @@ const mapStateToProps = (state) => {
   const props = {
     articleList: state.articleList,
     getArticleList: actions.getArticleList,
+    currentPage: state.currentPage,
+    switchPage: actions.switchPage,
+    articlesCount: state.articlesCount,
   };
 
   return props;
@@ -20,17 +27,44 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getArticleList: actions.getArticleList,
+  switchPage: actions.switchPage,
 };
 
 function Main(props) {
-  const { articleList, getArticleList } = props;
+  const {
+    articleList,
+    getArticleList,
+    switchPage,
+    articlesCount,
+    currentPage,
+  } = props;
+
+  const renderPagination = () => {
+    return (
+      <Pagination
+        onChange={(page) => {
+          switchPage(page);
+          window.scrollTo(0, 0);
+          getArticleList(page);
+        }}
+        showSizeChanger={false}
+        defaultCurrent="1"
+        defaultPageSize="10"
+        total={articlesCount}
+        hideOnSinglePage
+      />
+    );
+  };
 
   const renderArticle = (heading, body, slug, author, likesCount, tagList) => {
     return (
       <div key={slug} className="main__wall__post">
         <h3 className="main__wall__post__heading">
           {heading}
-          <p className="main__wall__post__author">Автор: <UserOutlined />{author}</p>
+          <p className="main__wall__post__author">
+            Автор: <UserOutlined />
+            {author}
+          </p>
         </h3>
         <p>{body}</p>
         <Divider />
@@ -60,7 +94,7 @@ function Main(props) {
 
   const loadingArticles = () => {
     if (articleList.length === 0) {
-      getArticleList();
+      getArticleList(currentPage);
     }
   };
 
@@ -91,9 +125,14 @@ function Main(props) {
             {renderLoader()}
             {renderLoader()}
             {renderLoader()}
+            {renderLoader()}
+            {renderLoader()}
+            {renderLoader()}
+            {renderLoader()}
           </div>
         )}
       </div>
+      {renderPagination()}
       <BackTop />
     </div>
   );

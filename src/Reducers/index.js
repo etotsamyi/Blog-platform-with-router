@@ -65,9 +65,29 @@ const articleList = handleActions(
   []
 );
 
+const articlesCount = handleActions(
+  {
+    [actions.getTotalArticlesCount](_state, { payload: totalCount }) {
+      return totalCount;
+    },
+  },
+  0
+);
+
+const currentPage = handleActions(
+  {
+    [actions.switchPage](_state, { payload: page }) {
+      return page;
+    },
+  },
+  1
+);
+
 export default combineReducers({
   user,
   registerStatus,
   createArticle,
   articleList,
+  articlesCount,
+  currentPage,
 });

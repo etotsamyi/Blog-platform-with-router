@@ -20,6 +20,9 @@ export const getArticlesRequest = createAction("GET_ARTICLES_REQUEST");
 export const getArticlesSuccess = createAction("GET_ARTICLES_SUCCESS");
 export const getArticlesFailure = createAction("GET_ARTICLES_FAILURE");
 
+export const getTotalArticlesCount = createAction("GET_TOTAL_ARTICLES_COUNT");
+export const switchPage = createAction("SWITCH_PAGE");
+
 export const loginWithJWT = () => async (dispatch) => {
   dispatch(login());
   try {
@@ -98,21 +101,14 @@ export const registerUser = (values) => async (dispatch) => {
 export const createArticle = (values) => async (dispatch) => {
   dispatch(createArticleRequest());
   console.log(values);
-  // const valuesWithTags = {
-  //   title: values.title,
-  //   description: values.description,
-  //   body: values.body,
-  //   tagList: values.tagList ? values.tagList.split(" ") : "",
-  // };
-  // console.log(valuesWithTags);
   try {
     const response = await instance.post("/articles", values);
     console.log(response);
     if (response.status === 200) {
       message.success(`Успешно!`);
       dispatch(createArticleSuccess(response.data.article));
-      getArticleList();
-      setTimeout(() => window.history.back(), 1500);
+      getArticleList(1);
+      // setTimeout(() => window.history.back(), 1000);
     }
   } catch (error) {
     dispatch(createArticleFailure());
@@ -120,13 +116,15 @@ export const createArticle = (values) => async (dispatch) => {
   }
 };
 
-export const getArticleList = () => async (dispatch) => {
+export const getArticleList = (page) => async (dispatch) => {
   dispatch(getArticlesRequest());
   try {
-    const response = await instance.get("/articles?limit=10");
-    console.log(response.data.articles);
+    const offset = (page - 1) * 10;
+    const response = await instance.get(`/articles?limit=10&offset=${offset}`);
+    console.log(response.data);
     if (response.status === 200) {
       dispatch(getArticlesSuccess(response.data.articles));
+      dispatch(getTotalArticlesCount(response.data.articlesCount));
     }
   } catch (error) {
     dispatch(createArticleFailure());
