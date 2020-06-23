@@ -15,9 +15,9 @@ const mapStateToProps = (state) => {
   const props = {
     userName: state.user.username,
     loggedIn: state.loggedIn,
-    signout: actions.logoutUser,
-    createArticle: actions.createArticle,
-    getArticleList: actions.getArticleList,
+    isEditing: state.isEditing,
+    singleArticle: state.singleArticle,
+    currentPage: state.currentPage,
   };
 
   return props;
@@ -26,10 +26,43 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   createArticle: actions.createArticle,
   getArticleList: actions.getArticleList,
+  editArticle: actions.editArticle,
 };
 
 function AddArticle(props) {
-  const { createArticle, history, getArticleList } = props;
+  const {
+    createArticle,
+    history,
+    getArticleList,
+    isEditing,
+    singleArticle,
+    editArticle,
+    currentPage,
+  } = props;
+
+  const submitCreating = async (values) => {
+    const valuesWithTags = {
+      title: values.title,
+      description: values.description,
+      body: values.body,
+      tagList: values.tagList ? values.tagList.split(" ") : [],
+    };
+    await createArticle(valuesWithTags);
+    await getArticleList(1);
+    history.push(routes.main);
+  };
+
+  const submitEditing = async (values) => {
+    const valuesWithTags = {
+      title: values.title,
+      description: values.description,
+      body: values.body,
+      tagList: values.tagList ? values.tagList.split(" ") : [""],
+    };
+    await editArticle(valuesWithTags, singleArticle.slug);
+    await getArticleList(currentPage);
+    history.push(routes.main);
+  };
 
   return (
     <div className="main">
@@ -39,35 +72,22 @@ function AddArticle(props) {
           <Link to={routes.main}>
             <LeftCircleOutlined />
           </Link>{" "}
-          Создать статью
+          {!isEditing ? "Создать статью" : "Редактировать статью"}
         </h2>
         <Formik
           initialValues={{
-            title: "",
-            description: "",
-            body: "",
-            tagList: "",
+            title: !isEditing ? "" : singleArticle.title,
+            description: !isEditing ? "" : singleArticle.description,
+            body: !isEditing ? "" : singleArticle.body,
+            tagList: !isEditing ? "" : singleArticle.tagList.join(" "),
           }}
-          onSubmit={async (values) => {
-            const valuesWithTags = {
-              title: values.title,
-              description: values.description,
-              body: values.body,
-              tagList: values.tagList ? values.tagList.split(" ") : [],
-            };
-            await createArticle(valuesWithTags);
-            getArticleList(1);
-            history.push(routes.main);
-          }}
+          onSubmit={
+            !isEditing
+              ? (values) => submitCreating(values)
+              : (values) => submitEditing(values)
+          }
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            isSubmitting,
-          }) => (
+          {({ values, handleChange, handleBlur, isSubmitting }) => (
             <div className={isSubmitting ? "submitting-form" : ""}>
               <Form className="login-form___login">
                 <label>
@@ -95,6 +115,7 @@ function AddArticle(props) {
                 <label>
                   Статья:
                   <TextArea
+                    required
                     className="body"
                     name="body"
                     rows={5}
@@ -118,7 +139,7 @@ function AddArticle(props) {
                   type="primary"
                   htmlType="submit"
                 >
-                  Написать
+                  {!isEditing ? "Написать" : "Сохранить"}
                 </Button>
               </Form>
             </div>

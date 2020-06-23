@@ -13,13 +13,14 @@ import Login from "../Components/Login";
 import Register from "../Components/Register";
 import Main from "../Components/Main";
 import AddArticle from "../Components/AddArticle";
+import SingleArticle from "../Components/SingleArticle"
 
 const mapStateToProps = (state) => {
   const props = {
     username: state.user.username,
     token: state.user.token,
-    loginWithJWT: actions.loginWithJWT,
     userStatus: state.user,
+    isEditing: state.isEditing,
     registerStatus: state.registerStatus,
   };
 
@@ -31,7 +32,7 @@ const mapDispatchToProps = {
 };
 
 function App(props) {
-  const { loginWithJWT, token } = props;
+  const { loginWithJWT, token, isEditing } = props;
   const localStoreToken = localStorage.getItem("token");
 
   const startTokenChecking = () => {
@@ -64,7 +65,14 @@ function App(props) {
           <Route path={routes.add_article} exact component={AddArticle}>
             {!localStoreToken ? <Redirect to={routes.login} /> : null}
           </Route>
-          <Route path="*" component={() => "404 ТАКОЙ СТРАНИЦЫ НЕ СУЩЕСТВУЕТ!"} />
+          <Route path={`${routes.main}/:slug`} exact component={SingleArticle} />
+          <Route path={`${routes.main}/:slug/edit`} exact component={AddArticle}>
+            {!isEditing ? <Redirect to={routes.main} /> : null}
+          </Route>
+          <Route
+            path="*"
+            component={() => "404 ТАКОЙ СТРАНИЦЫ НЕ СУЩЕСТВУЕТ!"}
+          />
         </Switch>
       </div>
     </Router>

@@ -60,6 +60,12 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  cursor: pointer;
+}
+
+.main__wall__post__heading__h3 {
+  display: flex;
+  flex-direction: column;
 }
 
 .main__wall__post__author {
@@ -68,6 +74,14 @@
   font-weight: normal;
 }
 
-/* .main__wall__post__footer__tag {
+.likes-count {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 35px;
+  cursor: pointer;
+}
 
-} */
+.likes-count:hover {
+  background-color: rgb(190, 190, 190);
+}
