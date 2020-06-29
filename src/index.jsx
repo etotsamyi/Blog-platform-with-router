@@ -13,14 +13,14 @@ const store = createStore(
   compose(
     applyMiddleware(ReduxThunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  )
+  ),
 );
 
 ReactDOM.render(
   <Provider classname="store" store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 serviceWorker.unregister();

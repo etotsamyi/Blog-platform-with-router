@@ -1,12 +1,12 @@
-import React from "react";
-import { Formik, Form } from "formik";
-import { Input, Button, Divider } from "antd";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../../Actions";
-import "antd/dist/antd.css";
-import "./register.css";
-import * as routes from "../../routes.js";
+import React from 'react';
+import { Formik, Form } from 'formik';
+import { Input, Button, Divider } from 'antd';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../../Actions';
+import 'antd/dist/antd.css';
+import './register.css';
+import * as routes from '../../routes.js';
 import * as yup from 'yup';
 
 const SignupSchema = yup.object().shape({
@@ -36,7 +36,7 @@ const mapDispatchToProps = {
 function Register(props) {
   const { registerUser } = props;
 
-  if (props.registerStatus === "register-success") {
+  if (props.registerStatus === 'register-success') {
     return <Redirect to={routes.login} />;
   }
 
@@ -44,9 +44,9 @@ function Register(props) {
     <div className="register-form">
       <Formik
         initialValues={{
-          username: "",
-          email: "",
-          password: "",
+          username: '',
+          email: '',
+          password: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
@@ -61,12 +61,12 @@ function Register(props) {
           handleBlur,
           isSubmitting,
         }) => (
-          <div className={isSubmitting ? "submitting-form" : ""}>
+          <div className={isSubmitting ? 'submitting-form' : ''}>
             <Form className="register-form___registration">
               <label>
                 Имя пользователя:
                 <Input
-                  className={errors.username && touched.username && "error"}
+                  className={errors.username && touched.username && 'error'}
                   required
                   name="username"
                   onChange={handleChange}
@@ -77,7 +77,7 @@ function Register(props) {
               <label>
                 Email:
                 <Input
-                  className={errors.email && touched.email && "error"}
+                  className={errors.email && touched.email && 'error'}
                   required
                   name="email"
                   onChange={handleChange}
@@ -86,12 +86,12 @@ function Register(props) {
                 />
               </label>
               {errors.email && touched.email && (
-                  <div className="input-error">{errors.email}</div>
-                )}
+              <div className="input-error">{errors.email}</div>
+              )}
               <label>
                 Пароль:
                 <Input.Password
-                  className={errors.password && touched.password && "error"}
+                  className={errors.password && touched.password && 'error'}
                   required
                   name="password"
                   onChange={handleChange}

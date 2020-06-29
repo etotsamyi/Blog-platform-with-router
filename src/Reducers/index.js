@@ -4,16 +4,16 @@ import * as actions from "../Actions";
 
 const user = handleActions(
   {
-    [actions.login](_state) {
+    [actions.login](state) {
       return "requested";
     },
-    [actions.loginSuccess](_state, { payload: userData }) {
+    [actions.loginSuccess](state, { payload: userData }) {
       return userData;
     },
-    [actions.loginFailure](_state) {
+    [actions.loginFailure](state) {
       return "error";
     },
-    [actions.logout](_state) {
+    [actions.logout](state) {
       return {};
     },
   },
@@ -22,13 +22,13 @@ const user = handleActions(
 
 const registerStatus = handleActions(
   {
-    [actions.register](_state) {
+    [actions.register](state) {
       return "requested";
     },
-    [actions.registerSuccess](_state) {
+    [actions.registerSuccess](state) {
       return "register-success";
     },
-    [actions.registerFailure](_state) {
+    [actions.registerFailure](state) {
       return "register-error";
     },
   },
@@ -37,13 +37,13 @@ const registerStatus = handleActions(
 
 const createArticle = handleActions(
   {
-    [actions.createArticleRequest](_state) {
+    [actions.createArticleRequest](state) {
       return "create-requested";
     },
-    [actions.createArticleSuccess](_state) {
+    [actions.createArticleSuccess](state) {
       return "create-succes";
     },
-    [actions.createArticleFailure](_state) {
+    [actions.createArticleFailure](state) {
       return "create-error";
     },
   },
@@ -52,17 +52,17 @@ const createArticle = handleActions(
 
 const articleList = handleActions(
   {
-    [actions.getArticlesRequest](_state) {
+    [actions.getArticlesRequest](state) {
       return "getting-requested";
     },
-    [actions.getArticlesSuccess](_state, { payload: articles }) {
+    [actions.getArticlesSuccess](state, { payload: articles }) {
       return [...articles];
     },
-    [actions.getArticlesFailure](_state) {
+    [actions.getArticlesFailure](state) {
       return "getting-error";
     },
-    [actions.expandText](_state, { payload: slug }) {
-      const newState = _state.map((article) => {
+    [actions.expandText](state, { payload: slug }) {
+      const newState = state.map((article) => {
         if (article.slug === slug) {
           article.expanded = !article.expanded;
           return article;
@@ -71,9 +71,9 @@ const articleList = handleActions(
       });
       return newState;
     },
-    [actions.putFavoriteSuccess](_state, { payload: data }) {
+    [actions.putFavoriteSuccess](state, { payload: data }) {
       const { slug, article } = data;
-      const newState = _state.map((el) => {
+      const newState = state.map((el) => {
         if (el.slug === slug) {
           return article;
         }
@@ -81,9 +81,9 @@ const articleList = handleActions(
       });
       return newState;
     },
-    [actions.unPutFavoriteSuccess](_state, { payload: data }) {
+    [actions.unPutFavoriteSuccess](state, { payload: data }) {
       const { slug, article } = data;
-      const newState = _state.map((el) => {
+      const newState = state.map((el) => {
         if (el.slug === slug) {
           return article;
         }
@@ -97,7 +97,7 @@ const articleList = handleActions(
 
 const articlesCount = handleActions(
   {
-    [actions.getTotalArticlesCount](_state, { payload: totalCount }) {
+    [actions.getTotalArticlesCount](state, { payload: totalCount }) {
       return totalCount;
     },
   },
@@ -106,22 +106,22 @@ const articlesCount = handleActions(
 
 const favoriteFetch = handleActions(
   {
-    [actions.putFavoriteRequest](_state) {
+    [actions.putFavoriteRequest](state) {
       return "putting-requested";
     },
-    [actions.putFavoriteSuccess](_state) {
+    [actions.putFavoriteSuccess](state) {
       return "putting-success";
     },
-    [actions.putFavoriteFailure](_state, { payload: error }) {
+    [actions.putFavoriteFailure](state, { payload: error }) {
       return error;
     },
-    [actions.unPutFavoriteRequest](_state) {
+    [actions.unPutFavoriteRequest](state) {
       return "unputting-requested";
     },
-    [actions.unPutFavoriteSuccess](_state) {
+    [actions.unPutFavoriteSuccess](state) {
       return "unputting-success";
     },
-    [actions.unPutFavoriteFailure](_state) {
+    [actions.unPutFavoriteFailure](state) {
       return "unputting-error";
     },
   },
@@ -130,7 +130,7 @@ const favoriteFetch = handleActions(
 
 const currentPage = handleActions(
   {
-    [actions.switchPage](_state, { payload: page }) {
+    [actions.switchPage](state, { payload: page }) {
       return page;
     },
   },
@@ -139,23 +139,23 @@ const currentPage = handleActions(
 
 const singleArticle = handleActions(
   {
-    [actions.getSingleArticleRequest](_state) {
+    [actions.getSingleArticleRequest](state) {
       return "getting-requested";
     },
-    [actions.getSingleArticleSuccess](_state, { payload: article }) {
+    [actions.getSingleArticleSuccess](state, { payload: article }) {
       return article;
     },
-    [actions.getSingleArticleFailure](_state) {
+    [actions.getSingleArticleFailure](state) {
       return "getting-error";
     },
-    [actions.clearSingleArticle](_state) {
+    [actions.clearSingleArticle](state) {
       return "";
     },
-    [actions.putFavoriteSuccess](_state, { payload: data }) {
+    [actions.putFavoriteSuccess](state, { payload: data }) {
       const { article } = data;
       return article;
     },
-    [actions.unPutFavoriteSuccess](_state, { payload: data }) {
+    [actions.unPutFavoriteSuccess](state, { payload: data }) {
       const { article } = data;
       return article;
     },
@@ -165,10 +165,10 @@ const singleArticle = handleActions(
 
 const isEditing = handleActions(
   {
-    [actions.startEditing](_state) {
+    [actions.startEditing](state) {
       return true;
     },
-    [actions.endEditing](_state) {
+    [actions.endEditing](state) {
       return false;
     },
   },
@@ -177,13 +177,13 @@ const isEditing = handleActions(
 
 const editFetch = handleActions(
   {
-    [actions.editArticleRequest](_state) {
+    [actions.editArticleRequest](state) {
       return "edit-requested";
     },
-    [actions.editArticleSuccess](_state) {
+    [actions.editArticleSuccess](state) {
       return "edit-success";
     },
-    [actions.editArticleFailure](_state) {
+    [actions.editArticleFailure](state) {
       return "edit-error";
     },
   },

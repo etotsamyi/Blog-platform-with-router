@@ -1,13 +1,13 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Formik, Form } from "formik";
-import { Input, Button } from "antd";
-import { Link, withRouter } from "react-router-dom";
-import { LeftCircleOutlined } from "@ant-design/icons";
-import * as routes from "../../routes.js";
-import * as actions from "../../Actions";
-import Header from "../Header";
-import "./addArticle.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Formik, Form } from 'formik';
+import { Input, Button } from 'antd';
+import { Link, withRouter } from 'react-router-dom';
+import { LeftCircleOutlined } from '@ant-design/icons';
+import * as routes from '../../routes.js';
+import * as actions from '../../Actions';
+import Header from '../Header';
+import './addArticle.css';
 
 const { TextArea } = Input;
 
@@ -45,7 +45,7 @@ function AddArticle(props) {
       title: values.title,
       description: values.description,
       body: values.body,
-      tagList: values.tagList ? values.tagList.split(" ") : [],
+      tagList: values.tagList ? values.tagList.split(' ') : [],
     };
     await createArticle(valuesWithTags);
     await getArticleList(1);
@@ -57,7 +57,7 @@ function AddArticle(props) {
       title: values.title,
       description: values.description,
       body: values.body,
-      tagList: values.tagList ? values.tagList.split(" ") : [""],
+      tagList: values.tagList ? values.tagList.split(' ') : [''],
     };
     await editArticle(valuesWithTags, singleArticle.slug);
     await getArticleList(currentPage);
@@ -71,15 +71,16 @@ function AddArticle(props) {
         <h2>
           <Link to={routes.main}>
             <LeftCircleOutlined />
-          </Link>{" "}
-          {!isEditing ? "Создать статью" : "Редактировать статью"}
+          </Link>
+          {' '}
+          {!isEditing ? 'Создать статью' : 'Редактировать статью'}
         </h2>
         <Formik
           initialValues={{
-            title: !isEditing ? "" : singleArticle.title,
-            description: !isEditing ? "" : singleArticle.description,
-            body: !isEditing ? "" : singleArticle.body,
-            tagList: !isEditing ? "" : singleArticle.tagList.join(" "),
+            title: !isEditing ? '' : singleArticle.title,
+            description: !isEditing ? '' : singleArticle.description,
+            body: !isEditing ? '' : singleArticle.body,
+            tagList: !isEditing ? '' : singleArticle.tagList.join(' '),
           }}
           onSubmit={
             !isEditing
@@ -87,8 +88,10 @@ function AddArticle(props) {
               : (values) => submitEditing(values)
           }
         >
-          {({ values, handleChange, handleBlur, isSubmitting }) => (
-            <div className={isSubmitting ? "submitting-form" : ""}>
+          {({
+            values, handleChange, handleBlur, isSubmitting,
+          }) => (
+            <div className={isSubmitting ? 'submitting-form' : ''}>
               <Form className="login-form___login">
                 <label>
                   Заголовок:
@@ -139,7 +142,7 @@ function AddArticle(props) {
                   type="primary"
                   htmlType="submit"
                 >
-                  {!isEditing ? "Написать" : "Сохранить"}
+                  {!isEditing ? 'Написать' : 'Сохранить'}
                 </Button>
               </Form>
             </div>
@@ -152,5 +155,5 @@ function AddArticle(props) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withRouter(AddArticle));

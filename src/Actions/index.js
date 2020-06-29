@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAction } from "redux-actions";
 import { message } from "antd";
-import instance from "./api";
+import instance from "../utilities/api";
 
 export const login = createAction("LOGIN_REQUEST");
 export const loginSuccess = createAction("LOGIN_SUCCESS");
@@ -149,7 +149,7 @@ export const getArticleList = (page) => async (dispatch) => {
   }
 };
 
-export const makeFav = (slug) => async (dispatch) => {
+export const pushLike = (slug) => async (dispatch) => {
   dispatch(putFavoriteRequest());
   try {
     const response = await instance.post(`/articles/${slug}/favorite`);
@@ -161,7 +161,7 @@ export const makeFav = (slug) => async (dispatch) => {
   }
 }
 
-export const makeUnfav = (slug) => async (dispatch) => {
+export const pushUnlike = (slug) => async (dispatch) => {
   dispatch(unPutFavoriteRequest());
   try {
     const response = await instance.delete(`/articles/${slug}/favorite`);

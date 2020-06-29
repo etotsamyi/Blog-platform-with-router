@@ -1,11 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Button, Spin } from "antd";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import * as actions from "../../Actions";
-import * as routes from "../../routes.js";
-import "antd/dist/antd.css";
-import "./header.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Button, Spin } from 'antd';
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import * as actions from '../../Actions';
+import * as routes from '../../routes.js';
+import 'antd/dist/antd.css';
+import './header.css';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -28,11 +28,15 @@ function Header(props) {
   return (
     <header className="header">
       <div>
-        Пользователь: <UserOutlined />
-        {user === "requested" ? <Spin /> : userName}
+        Пользователь:
+        {' '}
+        <UserOutlined />
+        {user === 'requested' ? <Spin /> : userName}
       </div>
       <Button className="header__logout" onClick={signout} to={routes.home}>
-        <LogoutOutlined /> Выйти
+        <LogoutOutlined />
+        {' '}
+        Выйти
       </Button>
     </header>
   );

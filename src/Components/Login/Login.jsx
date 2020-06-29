@@ -1,12 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
-import * as actions from "../../Actions";
-import { Input, Button, Divider } from "antd";
-import * as routes from "../../routes.js";
-import "antd/dist/antd.css";
-import "./login.css";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
+import { Input, Button, Divider } from 'antd';
+import * as actions from '../../Actions';
+import * as routes from '../../routes.js';
+import 'antd/dist/antd.css';
+import './login.css';
 
 const mapStateToProps = (state) => {
   const props = {
@@ -30,8 +30,8 @@ function Login(props) {
     <div className="login-form">
       <Formik
         initialValues={{
-          email: "",
-          password: "",
+          email: '',
+          password: '',
         }}
         // validationSchema={SignupSchema}
         onSubmit={(values) => signin(values)}
@@ -44,13 +44,13 @@ function Login(props) {
           handleBlur,
           isSubmitting,
         }) => (
-          <div className={isSubmitting ? "submitting-form" : ""}>
+          <div className={isSubmitting ? 'submitting-form' : ''}>
             <Form className="login-form___login">
               <label>
                 Email:
                 <Input
                   required
-                  className={errors.email && touched.email && "error"}
+                  className={errors.email && touched.email && 'error'}
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -61,7 +61,7 @@ function Login(props) {
                 Пароль:
                 <Input.Password
                   required
-                  className={errors.password && touched.password && "error"}
+                  className={errors.password && touched.password && 'error'}
                   name="password"
                   onChange={handleChange}
                   onBlur={handleBlur}
